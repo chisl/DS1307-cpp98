@@ -2,12 +2,17 @@
  * name:        DS1307
  * description: Lowpower serial real-time clock (RTC) with full binary-coded decimal (BCD) clock/calendar plus 56 bytes of NV SRAM.
  * manuf:       Maxim Integrated
- * version:     0.1
+ * version:     Version 0.1
  * url:         https://datasheets.maximintegrated.com/en/ds/DS1307.pdf
  * date:        2017-01-11
  * author       https://chisl.io/
  * file:        DS1307.hpp
  */
+
+/*                                                                                                       *
+ *                                   THIS FILE IS AUTOMATICALLY CREATED                                  *
+ *                                    D O     N O T     M O D I F Y  !                                   *
+ *                                                                                                       */
 
 #include <cinttypes>
 
@@ -37,22 +42,32 @@ public:
 		static const uint16_t __address = 0;
 		
 		/* Bits CH: */
-		/* Clock halt  */
+		/*
+		 * The clock halt bit. When this bit is set to '1', the oscillator is disabled.
+		 * When cleared to '0', the oscillator is enabled.
+		 * The clock can be halted whenever the timekeeping functions are not required,
+		 * which minimizes current (IBATDR).
+		 */
 		struct CH
 		{
-			/* Mode:t */
+			/* MODE rw */
+			static const uint8_t dflt = 0b0; // 1'b0
 			static const uint8_t mask = 0b10000000; // [7]
-			static const uint8_t ENABLE = 0b0; // 
-			static const uint8_t DISABLE = 0b1; // 
+			static const uint8_t OSC_ENABLE = 0b0; // 
+			static const uint8_t OSC_DISABLE = 0b1; // 
 		};
 		/* Bits SECS_10: */
 		struct SECS_10
 		{
+			/* MODE rw */
+			static const uint8_t dflt = 0b000; // 3'b0
 			static const uint8_t mask = 0b01110000; // [4,5,6]
 		};
 		/* Bits SECS: */
 		struct SECS
 		{
+			/* MODE rw */
+			static const uint8_t dflt = 0b0000; // 4'b0
 			static const uint8_t mask = 0b00001111; // [0,1,2,3]
 		};
 	};
@@ -87,17 +102,22 @@ public:
 		/* Bits unused_0: */
 		struct unused_0
 		{
+			/* MODE rw */
 			static const uint8_t dflt = 0b0; // 1'b0
 			static const uint8_t mask = 0b10000000; // [7]
 		};
 		/* Bits MINUTES_10: */
 		struct MINUTES_10
 		{
+			/* MODE rw */
+			static const uint8_t dflt = 0b000; // 3'b0
 			static const uint8_t mask = 0b01110000; // [4,5,6]
 		};
 		/* Bits MINUTES: */
 		struct MINUTES_
 		{
+			/* MODE rw */
+			static const uint8_t dflt = 0b0000; // 4'b0
 			static const uint8_t mask = 0b00001111; // [0,1,2,3]
 		};
 	};
@@ -136,12 +156,15 @@ public:
 		/* Bits unused_0: */
 		struct unused_0
 		{
+			/* MODE rw */
 			static const uint8_t dflt = 0b0; // 1'b0
 			static const uint8_t mask = 0b10000000; // [7]
 		};
 		/* Bits H12_24: */
 		struct H12_24
 		{
+			/* MODE rw */
+			static const uint8_t dflt = 0b0; // 1'b0
 			static const uint8_t mask = 0b01000000; // [6]
 			static const uint8_t H24 = 0b0; // 
 			static const uint8_t H12 = 0b1; // 
@@ -149,6 +172,8 @@ public:
 		/* Bits AM_PM: */
 		struct AM_PM
 		{
+			/* MODE rw */
+			static const uint8_t dflt = 0b0; // 1'b0
 			static const uint8_t mask = 0b00100000; // [5]
 			static const uint8_t AM = 0b0; // 
 			static const uint8_t PM = 0b1; // 
@@ -156,11 +181,15 @@ public:
 		/* Bits HOUR_10: */
 		struct HOUR_10
 		{
+			/* MODE rw */
+			static const uint8_t dflt = 0b0; // 1'b0
 			static const uint8_t mask = 0b00010000; // [4]
 		};
 		/* Bits HOURS: */
 		struct HOURS
 		{
+			/* MODE rw */
+			static const uint8_t dflt = 0b0000; // 4'b0
 			static const uint8_t mask = 0b00001111; // [0,1,2,3]
 		};
 	};
@@ -199,12 +228,15 @@ public:
 		/* Bits unused_0: */
 		struct unused_0
 		{
+			/* MODE rw */
 			static const uint8_t dflt = 0b0; // 1'b0
 			static const uint8_t mask = 0b10000000; // [7]
 		};
 		/* Bits H12_24: */
 		struct H12_24
 		{
+			/* MODE rw */
+			static const uint8_t dflt = 0b0; // 1'b0
 			static const uint8_t mask = 0b01000000; // [6]
 			static const uint8_t H24 = 0b0; // 
 			static const uint8_t H12 = 0b1; // 
@@ -212,12 +244,16 @@ public:
 		/* Bits HOUR_10: */
 		struct HOUR_10
 		{
+			/* MODE rw */
+			static const uint8_t dflt = 0b00; // 2'b0
 			static const uint8_t mask = 0b00110000; // [4,5]
 		};
 		/* Bits HOURS: */
 		/* BCD format */
 		struct HOURS
 		{
+			/* MODE rw */
+			static const uint8_t dflt = 0b0000; // 4'b0
 			static const uint8_t mask = 0b00001111; // [0,1,2,3]
 		};
 	};
@@ -252,6 +288,7 @@ public:
 		/* Bits unused_0: */
 		struct unused_0
 		{
+			/* MODE rw */
 			static const uint8_t dflt = 0b00000; // 5'd0
 			static const uint8_t mask = 0b11111000; // [3,4,5,6,7]
 		};
@@ -259,6 +296,8 @@ public:
 		/* BCD format */
 		struct DAY_
 		{
+			/* MODE rw */
+			static const uint8_t dflt = 0b000; // 3'b0
 			static const uint8_t mask = 0b00000111; // [0,1,2]
 		};
 	};
@@ -293,18 +332,23 @@ public:
 		/* Bits unused_0: */
 		struct unused_0
 		{
+			/* MODE rw */
 			static const uint8_t dflt = 0b00; // 2'd0
 			static const uint8_t mask = 0b11000000; // [6,7]
 		};
 		/* Bits DATE_10: */
 		struct DATE_10
 		{
+			/* MODE rw */
+			static const uint8_t dflt = 0b00; // 2'b0
 			static const uint8_t mask = 0b00110000; // [4,5]
 		};
 		/* Bits DATE: */
 		/* BCD format */
 		struct DATE_
 		{
+			/* MODE rw */
+			static const uint8_t dflt = 0b0000; // 4'b0
 			static const uint8_t mask = 0b00001111; // [0,1,2,3]
 		};
 	};
@@ -339,18 +383,23 @@ public:
 		/* Bits unused_0: */
 		struct unused_0
 		{
+			/* MODE rw */
 			static const uint8_t dflt = 0b000; // 3'd0
 			static const uint8_t mask = 0b11100000; // [5,6,7]
 		};
 		/* Bits MONTH_10: */
 		struct MONTH_10
 		{
+			/* MODE rw */
+			static const uint8_t dflt = 0b0; // 1'b0
 			static const uint8_t mask = 0b00010000; // [4]
 		};
 		/* Bits MONTH: */
 		/* BCD format */
 		struct MONTH_
 		{
+			/* MODE rw */
+			static const uint8_t dflt = 0b0000; // 4'b0
 			static const uint8_t mask = 0b00001111; // [0,1,2,3]
 		};
 	};
@@ -386,12 +435,16 @@ public:
 		/* BCD format */
 		struct YEAR_10
 		{
+			/* MODE rw */
+			static const uint8_t dflt = 0b0000; // 4'b0
 			static const uint8_t mask = 0b11110000; // [4,5,6,7]
 		};
 		/* Bits YEAR: */
 		/* BCD format */
 		struct YEAR_
 		{
+			/* MODE rw */
+			static const uint8_t dflt = 0b0000; // 4'b0
 			static const uint8_t mask = 0b00001111; // [0,1,2,3]
 		};
 	};
@@ -415,7 +468,9 @@ public:
 	 *                                                                                                  *
 	\****************************************************************************************************/
 	
-	/* REG CONTROL:
+	/*
+	 * REG CONTROL:
+	 * The DS1307 control register is used to control the operation of the SQW/OUT pin.
 	 */
 	struct CONTROL
 	{
@@ -430,6 +485,7 @@ public:
 		 */
 		struct OUT
 		{
+			/* MODE rw */
 			static const uint8_t dflt = 0b0; // 1'b0
 			static const uint8_t mask = 0b10000000; // [7]
 			static const uint8_t LEVEL_0 = 0b0; // 
@@ -438,6 +494,7 @@ public:
 		/* Bits unused_0: */
 		struct unused_0
 		{
+			/* MODE rw */
 			static const uint8_t dflt = 0b00; // 2'b0
 			static const uint8_t mask = 0b01100000; // [5,6]
 		};
@@ -451,6 +508,7 @@ public:
 		 */
 		struct SQWE
 		{
+			/* MODE rw */
 			static const uint8_t dflt = 0b0; // 1'b0
 			static const uint8_t mask = 0b00010000; // [4]
 			static const uint8_t DISABLE = 0b0; // 
@@ -459,6 +517,7 @@ public:
 		/* Bits unused_1: */
 		struct unused_1
 		{
+			/* MODE rw */
 			static const uint8_t dflt = 0b00; // 2'b0
 			static const uint8_t mask = 0b00001100; // [2,3]
 		};
@@ -480,13 +539,13 @@ public:
 		 */
 		struct RS
 		{
-			/* Mode:rw */
+			/* MODE rw */
 			static const uint8_t dflt = 0b11; // 2'b11
 			static const uint8_t mask = 0b00000011; // [0,1]
 			static const uint8_t F1Hz = 0b00; // 
-			static const uint8_t F4_096kHz = 0b00; // 
-			static const uint8_t F8_192kHz = 0b00; // 
-			static const uint8_t F32_768kHz = 0b00; // 
+			static const uint8_t F4_096kHz = 0b01; // 
+			static const uint8_t F8_192kHz = 0b10; // 
+			static const uint8_t F32_768kHz = 0b11; // 
 		};
 	};
 	
